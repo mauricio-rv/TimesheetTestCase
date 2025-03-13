@@ -1,12 +1,7 @@
-package org.timesheet.utils;
+package pageutils;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.timesheet.pages.DashboardPage;
-import org.timesheet.pages.LoginPage;
-
-import java.time.Duration;
+import pages.DashboardPage;
 
 public class DashboardUtils extends DashboardPage{
 

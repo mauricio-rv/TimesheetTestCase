@@ -1,10 +1,7 @@
-package org.timesheet.utils;
+package pageutils;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.timesheet.pages.EditTimeSheetPage;
-
-import java.util.List;
+import pages.EditTimeSheetPage;
 
 public class EditTimeSheetUtils extends EditTimeSheetPage {
     public EditTimeSheetUtils(WebDriver driver) {

@@ -1,10 +1,7 @@
-package org.timesheet.utils;
+package pageutils;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.timesheet.pages.AddUserPage;
-
-import java.util.List;
+import pages.AddUserPage;
 
 public class AddUserUtils extends AddUserPage {
     public AddUserUtils(WebDriver driver) {

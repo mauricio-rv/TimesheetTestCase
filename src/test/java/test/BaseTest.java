@@ -1,10 +1,10 @@
+package test;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-import org.timesheet.pages.*;
-import org.timesheet.utils.*;
+import pageutils.*;
 
 public abstract class BaseTest {
     private String baseURL = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
