@@ -1,8 +1,8 @@
-package pageutils;
+package org.example.pageutils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.AdminPage;
+import org.example.pages.AdminPage;
 
 import java.util.List;
 

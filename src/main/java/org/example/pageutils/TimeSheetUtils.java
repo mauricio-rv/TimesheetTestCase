@@ -1,7 +1,7 @@
-package pageutils;
+package org.example.pageutils;
 
 import org.openqa.selenium.WebDriver;
-import pages.TimesheetPage;
+import org.example.pages.TimesheetPage;
 
 public class TimeSheetUtils extends TimesheetPage {
     public TimeSheetUtils(WebDriver driver) {

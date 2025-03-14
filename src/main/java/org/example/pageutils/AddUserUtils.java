@@ -1,7 +1,7 @@
-package pageutils;
+package org.example.pageutils;
 
 import org.openqa.selenium.WebDriver;
-import pages.AddUserPage;
+import org.example.pages.AddUserPage;
 
 public class AddUserUtils extends AddUserPage {
     public AddUserUtils(WebDriver driver) {

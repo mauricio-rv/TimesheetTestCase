@@ -1,7 +1,7 @@
-package pageutils;
+package org.example.pageutils;
 
 import org.openqa.selenium.WebDriver;
-import pages.EditTimeSheetPage;
+import org.example.pages.EditTimeSheetPage;
 
 public class EditTimeSheetUtils extends EditTimeSheetPage {
     public EditTimeSheetUtils(WebDriver driver) {

@@ -1,5 +1,6 @@
 package test;
 
+import org.example.utils.PropertyUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -8,14 +9,14 @@ import java.lang.reflect.Method;
 import static utils.extentreports.ExtentTestManager.startTest;
 
 public class TimeSheetFlowCase extends BaseTest{
-    private final String username = "chipa";
-    private final String employeeName = "Timothy Lewis Amiano";
-    private final String password = "grandechipa1";
-    private final String adminUser = "Admin";
-    private final String adminPassword = "admin123";
-    private final String hoursWorked = "40:00";
-    private final String hoursWorkedDaily = "8";
-    private final String comment = "Approved";
+    private final String username = PropertyUtils.getProperty("user.name");
+    private final String employeeName = PropertyUtils.getProperty("user.employee.name");
+    private final String password = PropertyUtils.getProperty("user.password");
+    private final String adminUser = PropertyUtils.getProperty("admin.user");
+    private final String adminPassword = PropertyUtils.getProperty("admin.password");
+    private final String hoursWorked = PropertyUtils.getProperty("hours.worked");
+    private final String hoursWorkedDaily = PropertyUtils.getProperty("hours.worked.daily");
+    private final String comment = PropertyUtils.getProperty("comment.to.approve");
 
     @Test(priority = 0)
     public void loginTest(Method method) {

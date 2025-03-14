@@ -1,7 +1,7 @@
-package pageutils;
+package org.example.pageutils;
 
 import org.openqa.selenium.WebDriver;
-import pages.DashboardPage;
+import org.example.pages.DashboardPage;
 
 public class DashboardUtils extends DashboardPage{
 

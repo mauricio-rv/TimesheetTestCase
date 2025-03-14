@@ -1,7 +1,7 @@
-package pageutils;
+package org.example.pageutils;
 
 import org.openqa.selenium.WebDriver;
-import pages.LoginPage;
+import org.example.pages.LoginPage;
 
 public class LoginUtils extends LoginPage{
 
