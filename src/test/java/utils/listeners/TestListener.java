@@ -1,11 +1,21 @@
 package utils.listeners;
 
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
+import org.apache.commons.io.FileUtils;
+import org.example.utils.PropertyUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import test.BaseTest;
 import utils.extentreports.ExtentManager;
+import utils.extentreports.ScreenshotManager;
+
+import java.io.File;
+import java.io.IOException;
 
 import static utils.extentreports.ExtentTestManager.getTest;
 
@@ -27,18 +37,25 @@ public class TestListener extends BaseTest implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
         //ExtentReports log operation for passed tests.
-        getTest().log(Status.PASS, "Test passed");
+        String screenshotPath = null;
+        try {
+            screenshotPath = ScreenshotManager.takeScreenshot(driver, getTestMethodName(iTestResult));
+            //ExtentReports log and screenshot operations for passed tests.
+            getTest().pass( "Test Passed", MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     @Override
     public void onTestFailure(ITestResult iTestResult) {
-//        //Get driver from BaseTest and assign to local webdriver variable.
-//        Object testClass = iTestResult.getInstance();
-//        //Take base64Screenshot screenshot for extent reports
-//        String base64Screenshot =
-//                "data:image/png;base64," + ((TakesScreensho) Objects.requireNonNull(driver)).getScreenshotAs(OutputType.BASE64);
-//        //ExtentReports log and screenshot operations for failed tests.
-//        getTest().log(Status.FAIL, "Test Failed",
-//                getTest().addScreenCaptureFromBase64String(base64Screenshot).getModel().getMedia().get(0));
+        //Take base64Screenshot screenshot for extent reports
+        try {
+            String screenshotPath = ScreenshotManager.takeScreenshot(driver, getTestMethodName(iTestResult));
+            //ExtentReports log and screenshot operations for failed tests.
+            getTest().fail( "Test Failed", MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
@@ -48,4 +65,5 @@ public class TestListener extends BaseTest implements ITestListener {
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
     }
+
 }

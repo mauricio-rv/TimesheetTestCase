@@ -18,7 +18,7 @@ public class TimeSheetFlowCase extends BaseTest{
     private final String hoursWorkedDaily = PropertyUtils.getProperty("hours.worked.daily");
     private final String comment = PropertyUtils.getProperty("comment.to.approve");
 
-    @Test(priority = 0)
+    @Test()
     public void loginTest(Method method) {
         startTest(method.getName(), "Login with admin credentials");
         loginUtils.isLoginPageLoaded();
@@ -26,7 +26,7 @@ public class TimeSheetFlowCase extends BaseTest{
         Assert.assertTrue(dashboardUtils.isDashboardPageLoaded());
     }
 
-    @Test(priority = 1)
+    @Test(dependsOnMethods = "loginTest")
     public void addEmployeeTest(Method method)  {
         startTest(method.getName(), "Add a new employee");
         dashboardUtils.goToAdminPage();
@@ -34,11 +34,12 @@ public class TimeSheetFlowCase extends BaseTest{
         adminUtils.clickAddButton();
         addUserUtils.isAddUserPageLoaded();
         addUserUtils.addUser(employeeName, username, password);
+
         adminUtils.isAdminPageLoaded();
         Assert.assertTrue(adminUtils.isUserInTable(username));
     }
 
-    @Test(priority = 2)
+    @Test(dependsOnMethods = "addEmployeeTest")
     public void logoutAndLoginWithNewUser(Method method) {
         startTest(method.getName(), "Logout and login with new user credentials");
         dashboardUtils.logout();
@@ -47,8 +48,8 @@ public class TimeSheetFlowCase extends BaseTest{
         Assert.assertTrue(dashboardUtils.isDashboardPageLoaded());
     }
 
-    @Test(priority = 3)
-    public void addTimeSheetTest(Method method) throws InterruptedException {
+    @Test(dependsOnMethods = "logoutAndLoginWithNewUser")
+    public void addTimeSheetTest(Method method) {
         startTest(method.getName(), "Add a new timesheet with the new user");
         dashboardUtils.goToTimePage();
         timeSheetUtils.isTimeSheetPageDisplayed();
@@ -61,7 +62,7 @@ public class TimeSheetFlowCase extends BaseTest{
         Assert.assertTrue(loginUtils.isLoginPageLoaded());
     }
 
-    @Test(priority = 4)
+    @Test(dependsOnMethods = "addTimeSheetTest")
     public void approveTimesheetTest(Method method) {
         startTest(method.getName(), "Approve the new user timesheet with the admin user");
         loginUtils.login(adminUser, adminPassword);
@@ -74,7 +75,7 @@ public class TimeSheetFlowCase extends BaseTest{
         Assert.assertTrue(loginUtils.isLoginPageLoaded());
     }
 
-    @Test(priority = 5)
+    @Test(dependsOnMethods = "approveTimesheetTest")
     public void validateApproveAndComment(Method method){
         startTest(method.getName(), "Validate if its approved with the new user");
         loginUtils.login(username, password);
