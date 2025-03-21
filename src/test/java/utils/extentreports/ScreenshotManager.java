@@ -10,12 +10,13 @@ import java.io.File;
 import java.io.IOException;
 
 public class ScreenshotManager {
+    public static String ErrScPath = System.getProperty("user.dir")+"\\ErrorScreenshots\\";
 
     public static String takeScreenshot(WebDriver driver, String ssname) throws IOException {
         TakesScreenshot ts = (TakesScreenshot) driver;
         File srcFile = ts.getScreenshotAs(OutputType.FILE);
-        File destFile = new File(PropertyUtils.getProperty("reportSS.source")+"/"+ ssname +".png");
+        File destFile = new File(ErrScPath + ssname +".png");
         FileUtils.copyFile(srcFile, destFile);
-        return destFile.getAbsolutePath();
+        return destFile.getPath();
     }
 }

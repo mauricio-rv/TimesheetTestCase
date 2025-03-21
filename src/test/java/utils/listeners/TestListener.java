@@ -19,7 +19,7 @@ import java.io.IOException;
 
 import static utils.extentreports.ExtentTestManager.getTest;
 
-public class TestListener extends BaseTest implements ITestListener {
+public class TestListener implements ITestListener {
     private static String getTestMethodName(ITestResult iTestResult) {
         return iTestResult.getMethod().getConstructorOrMethod().getName();
     }
@@ -39,9 +39,10 @@ public class TestListener extends BaseTest implements ITestListener {
         //ExtentReports log operation for passed tests.
         String screenshotPath = null;
         try {
-            screenshotPath = ScreenshotManager.takeScreenshot(driver, getTestMethodName(iTestResult));
+            screenshotPath = ScreenshotManager.takeScreenshot(BaseTest.driver, getTestMethodName(iTestResult));
+            System.out.println(screenshotPath);
             //ExtentReports log and screenshot operations for passed tests.
-            getTest().pass( "Test Passed", MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+            getTest().pass( "Test Passed").addScreenCaptureFromPath(screenshotPath);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -50,9 +51,9 @@ public class TestListener extends BaseTest implements ITestListener {
     public void onTestFailure(ITestResult iTestResult) {
         //Take base64Screenshot screenshot for extent reports
         try {
-            String screenshotPath = ScreenshotManager.takeScreenshot(driver, getTestMethodName(iTestResult));
+            String screenshotPath = ScreenshotManager.takeScreenshot(BaseTest.driver, getTestMethodName(iTestResult));
             //ExtentReports log and screenshot operations for failed tests.
-            getTest().fail( "Test Failed", MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+            getTest().fail( "Test Failed").addScreenCaptureFromPath(screenshotPath);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

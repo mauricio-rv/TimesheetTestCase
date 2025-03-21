@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeSuite;
 
 public abstract class BaseTest {
     private String baseURL = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
-    protected WebDriver driver;
+    public static WebDriver driver;
     protected LoginUtils loginUtils;
     protected DashboardUtils dashboardUtils;
     protected AdminUtils adminUtils;
